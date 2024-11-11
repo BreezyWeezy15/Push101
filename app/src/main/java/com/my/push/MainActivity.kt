@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("MissingPermission")
+    @SuppressLint("MissingPermission", "NotificationPermission")
     private fun showNotification(title: String, body: String) {
         val intent = Intent(Intent.ACTION_VIEW).apply {
             data = android.net.Uri.parse("https://www.google.com")
