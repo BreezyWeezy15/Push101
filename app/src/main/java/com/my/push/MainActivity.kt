@@ -1,6 +1,9 @@
 package com.my.push
 
 import android.Manifest
+import android.annotation.SuppressLint
+import android.app.PendingIntent
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
@@ -13,6 +16,8 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -44,9 +49,29 @@ class MainActivity : AppCompatActivity() {
 
         sendFcm = findViewById(R.id.sendFcm)
         sendFcm.setOnClickListener {
-            FCMHelper.sendPushNotification(this,
-                "FCM NOTIFICATION TITLE", "FCM NOTIFICATION BODY")
+            showNotification("FCM NOTIFICATION TITLE", "FCM NOTIFICATION BODY")
         }
+    }
+
+    @SuppressLint("MissingPermission")
+    private fun showNotification(title: String, body: String) {
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            data = android.net.Uri.parse("https://www.google.com")
+        }
+        val pendingIntent = PendingIntent.getActivity(
+            this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val notificationCompat = NotificationCompat.Builder(this, BaseApplication.NOTIFICATION_ID)
+            .setContentTitle(title)
+            .setContentText(body)
+            .setSmallIcon(R.drawable.bell)
+            .setContentIntent(pendingIntent)
+            .setAutoCancel(true)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
+            .build()
+
+        NotificationManagerCompat.from(this).notify(1, notificationCompat)
     }
 }
 
