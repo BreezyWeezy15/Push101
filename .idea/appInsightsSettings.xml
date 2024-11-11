@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="com.my.push" />
-                  <option name="mobileSdkAppId" value="1:464236025647:android:8a690a39abb194f47bf3da" />
-                  <option name="projectId" value="fcmpush-79cf6" />
-                  <option name="projectNumber" value="464236025647" />
+                  <option name="appId" value="PLACEHOLDER" />
+                  <option name="mobileSdkAppId" value="" />
+                  <option name="projectId" value="" />
+                  <option name="projectNumber" value="" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />
